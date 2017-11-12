@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start:server" : "babel-node server/index.js"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +27,8 @@
     "angular-eha.capitalize": "^1.1.0",
     "angular2-moment": "^1.7.0",
     "animate.css": "^3.5.2",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "core-js": "^2.4.1",
     "hammerjs": "^2.0.8",
     "rxjs": "^5.5.2",

@@ -1,0 +1,13 @@
+para iniciar el servidor web con node lo primero que se debe hacer integrar babel y babel cli
+
+`npm install --save babel-cli babel-preset-es2015`
+
+se crea una carpeta nueva con el nombre de serve que incluira todo lo relacionado a este
+
+creamos el index js
+
+creamos el comando para correr el server en package.json en la posicion de los scripts start:server bindeando en el: "babel-node server/index.js"
+
+dar las indicaciones a babel de los presets creando un archivo en la raiz del proyecto con nombre .babelrc
+
+luego corremos el server con el comando  npm run start:server
