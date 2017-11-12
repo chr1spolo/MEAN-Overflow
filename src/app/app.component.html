@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="animated bounceIn">
+  <span [routerLink]="['/']" class="hand"> PlatziOverflow </span>
+  <span class="space"></span>
+  <mat-icon [routerLink]="['/signIn']" class="hand">account_circle</mat-icon>
+</mat-toolbar>
+
+<div class="section animated bounceInUp">
+
+  <!-- <app-question-detail></app-question-detail> -->
+  <!-- <app-singin-screen></app-singin-screen> -->
+  <!-- <app-singup-screen></app-singup-screen> -->
+  <!-- <app-question-list></app-question-list> -->
+  <!-- <app-question-form></app-question-form> -->
+  <router-outlet></router-outlet>
+  
+</div>
