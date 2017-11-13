@@ -5,3 +5,7 @@ luego creas un archivo que contendrá express y exportar la constante con expres
 despues en los scripts del package.json incluir el de concurrently para correr ambos comandos el de servidor y cliente con la bandera -r para los colores predeterminados
 
 agregamos la carpeta de routes para la api, luego en enviroments, declaramos la url de la api dentro de la carpeta src/enviroments, despues instalamos el paquete `npm install --save url-join` para crear url correctas
+
+body-parser para leer los datos que vienen del front-end
+
+sweet-scroll una libreria para moverse en la pantalla
