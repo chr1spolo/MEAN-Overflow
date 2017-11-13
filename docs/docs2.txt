@@ -1,0 +1,7 @@
+para iniciar usaremos express `npm install --save express` acompañado de .` nodemon` que este se encargará de recargar el servidor a cada cambio que se le aplique y al final .` concurrently` que su funcion es correr procesos en paralelos con un comando
+
+luego creas un archivo que contendrá express y exportar la constante con express definido y su routing
+
+despues en los scripts del package.json incluir el de concurrently para correr ambos comandos el de servidor y cliente con la bandera -r para los colores predeterminados
+
+agregamos la carpeta de routes para la api, luego en enviroments, declaramos la url de la api dentro de la carpeta src/enviroments, despues instalamos el paquete `npm install --save url-join` para crear url correctas

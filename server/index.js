@@ -1,13 +1,10 @@
 import http from 'http'
+import Debug from 'debug'
+import app from './app'
 
 const PORT = 3000
-
-const app = http.createServer( (req, res) => {
-    res.writeHead(200, { 'Content-Type' : 'text/plain' })
-    res.write('Hola desde PlatziOverFlow')
-    res.end()
-})
+const debug = new Debug('platzi-overflow:root')
 
 app.listen(PORT, () => {
-    console.log(`Server running at port ${PORT}`)
+  debug(`Server running at port ${PORT}`)
 })

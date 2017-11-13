@@ -11,3 +11,5 @@ creamos el comando para correr el server en package.json en la posicion de los s
 dar las indicaciones a babel de los presets creando un archivo en la raiz del proyecto con nombre .babelrc
 
 luego corremos el server con el comando  npm run start:server
+
+para incluir debuggin debemos instalar `npm install --save debug` e importarlo en el index.js de la carpeta server, luego creas una constante instanciando debug y cambias los consoles log por debug

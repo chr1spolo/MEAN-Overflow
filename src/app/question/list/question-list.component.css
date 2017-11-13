@@ -11,3 +11,8 @@
     z-index: 2;
     font-size: 32px;
 }
+
+.pointer{
+  cursor: pointer;
+  border-bottom: 1px solid #dcdcdc;
+}

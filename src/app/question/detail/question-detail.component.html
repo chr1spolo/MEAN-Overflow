@@ -1,5 +1,7 @@
-<div class="animated bounceInUp">
-    
+<mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+
+<div class="animated bounceInUp" *ngIf="!loading">
+
     <mat-card>
         <h3 mat-subheader>Detalle de la pregunta</h3>
         <mat-card-header>
@@ -18,14 +20,14 @@
             <p> {{ question.description }} </p>
         </mat-card-content>
 
-        
+
     </mat-card>
 
     <div class="answers">
         <h3>Respuestas</h3>
         <ul class="answers-list" *ngIf="question.answers.length > 0">
             <li *ngFor="let answer of question.answers" class="animated jello">
-                <h5> 
+                <h5>
                     {{ answer.user.fullName() }}
                     <small> {{ answer.createdAt | amLocale: 'es' | amTimeAgo }}</small>
                 </h5>
@@ -34,7 +36,7 @@
                 </p>
             </li>
         </ul>
-        <p *ngIf="question.answers.length === 0">  
+        <p *ngIf="question.answers.length === 0">
             Sé el primero en responder esta pregunta
         </p>
     </div>
