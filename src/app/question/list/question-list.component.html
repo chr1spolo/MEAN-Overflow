@@ -3,13 +3,13 @@
 <div *ngIf="!loading">
 
   <mat-list class="animated bounceInUp">
-      <h3 mat-subheader> Preguntas {{login}} </h3>
+      <h3 mat-subheader> Preguntas </h3>
       <mat-list-item *ngFor="let question of questions" [routerLink]="['/questions', question._id]" class="pointer">
           <i *ngIf="question.icon === 'none'" mat-list-icon class="resize material-icons help">help</i>
           <i *ngIf="question.icon !== 'none'" mat-list-icon class="resize {{ question.icon }}"></i>
           <h3 mat-line>{{ question.title }}</h3>
           <p mat-line>
-              <small> {{ question.answers.legnth }} respuestas - {{ question.createdAt | amLocale: 'es' | amTimeAgo }} </small>
+              <small> {{ question.answers.length }} respuestas - {{ question.createdAt | amLocale: 'es' | amTimeAgo }} </small>
           </p>
       </mat-list-item>
   </mat-list>

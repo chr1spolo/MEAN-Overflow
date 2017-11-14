@@ -9,3 +9,5 @@ agregamos la carpeta de routes para la api, luego en enviroments, declaramos la 
 body-parser para leer los datos que vienen del front-end
 
 sweet-scroll una libreria para moverse en la pantalla
+
+jsonwebtoken libreria para tokens
