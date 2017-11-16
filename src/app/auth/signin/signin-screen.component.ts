@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl,Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../user.model';
+import { AuthService } from '../auth.service';
 
 @Component({
     selector: 'app-singin-screen',
@@ -10,6 +11,8 @@ import { User } from '../user.model';
 export class SignInScreenComponent implements OnInit {
 
     signinForm: FormGroup;
+
+    constructor(private authService: AuthService) {}
 
     ngOnInit() {
         this.signinForm = new FormGroup({
@@ -21,11 +24,16 @@ export class SignInScreenComponent implements OnInit {
         });
     }
 
-    onSubmit(){
+    onSubmit() {
         if (this.signinForm.valid) {
             const { email, password } = this.signinForm.value;
             const user = new User(email, password);
             console.log(user);
+            this.authService.userSignIn(user)
+                            .subscribe(
+                                this.authService.userIsLoggedIn,
+                                (error) => console.log(error)
+                            );
         }
     }
 

@@ -6,13 +6,14 @@ import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Resolve } from '@angular/router/src/interfaces';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
     usersUrl: string;
     currentUser?: User;
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private router: Router) {
         this.usersUrl = urljoin(environment.apiUrl, 'auth');
         if ( this.userIsLoggedIn() ) {
             const { userId, firstName, lastName, email } = JSON.parse( localStorage.getItem('user') );
@@ -32,7 +33,7 @@ export class AuthService {
          ).map( (response: Response) => {
               const json = response.json();
               this.userLogIn(json);
-              return json();
+              return json;
          })._catch( (error: Response) => {
             console.log(error);
             return Observable.throw(error.json());
@@ -50,6 +51,7 @@ export class AuthService {
         );
         localStorage.setItem('_token', _token);
         localStorage.setItem('user', JSON.stringify({ userId, firstName, lastName, email }));
+        this.router.navigateByUrl('/');
     }
 
     userIsLoggedIn() {

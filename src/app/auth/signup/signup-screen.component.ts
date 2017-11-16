@@ -7,10 +7,10 @@ import { User } from '../user.model';
     templateUrl: './signup-screen.module.html',
     styleUrls: ['./signup-screen.module.css']
 })
-export class SignUpScreenComponent implements OnInit{
+export class SignUpScreenComponent implements OnInit {
 
     signinForm: FormGroup;
-    
+
         ngOnInit() {
             this.signinForm = new FormGroup({
                 firstname: new FormControl(null, Validators.required),
@@ -22,7 +22,7 @@ export class SignUpScreenComponent implements OnInit{
                 password: new FormControl(null, Validators.required)
             });
         }
-    
+
         onSubmit(){
             if (this.signinForm.valid) {
                 const { firstname, lastname,email, password } = this.signinForm.value;

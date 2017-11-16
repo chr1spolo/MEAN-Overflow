@@ -11,19 +11,19 @@ const users = [
   {
     firstName: 'Chris',
     lastName: 'Polo',
-    email: 'polidavis',
+    email: 'polidavis@gmail.com',
     password: '123456',
     _id: 123
   }
 ]
 
-const findUserByEmail = (e) =>  users.find( user => user.email === e )
+const findUserByEmail = e =>  users.find( ({email}) => email === e )
 
 const compairPassword = (providerPassword, userPassword) => {
     return providerPassword === userPassword
 }
 
-app.post('signin', (req, res, next) => {
+app.post('/signin', (req, res, next) => {
     const {email, password} = req.body
     const user = findUserByEmail(email)
 
@@ -41,7 +41,7 @@ app.post('signin', (req, res, next) => {
       expiresIn: 86400
     })
 
-    res.status.json({
+    res.status(200).json({
       message: 'Login succeded',
       _token,
       userId: user._id,
