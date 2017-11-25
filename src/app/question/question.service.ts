@@ -18,6 +18,11 @@ export class QuestionService {
       this.questionsUrl = urljoin(environment.apiUrl, 'questions');
   }
 
+  addTokenString(url) {
+      const _token = localStorage.getItem('_token');
+      return url + `?_token=${_token}`;
+  }
+
   getQuestions(): Promise<void | Question[]> {
       return this.http.get(this.questionsUrl)
                   .toPromise()
@@ -38,7 +43,8 @@ export class QuestionService {
       const headers = new Headers(
         { 'Content-Type': 'application/json' }
       );
-      return this.http.post(this.questionsUrl, body, {headers})
+      const url = this.addTokenString(this.questionsUrl);
+      return this.http.post(url, body, {headers})
                       .map( (response: Response) => response.json())
                       .catch( (error: Response) => Observable.throw(error.json() ));
   }
@@ -55,7 +61,8 @@ export class QuestionService {
       const headers = new Headers(
         { 'Content-Type': 'application/json' }
       );
-      const url = urljoin( this.questionsUrl, answer.question._id, 'answers' );
+      let url = urljoin( this.questionsUrl, answer.question._id, 'answers' );
+      url = this.addTokenString(url);
       return this.http.post(url, body, {headers})
                       .map( (response: Response) => response.json())
                       .catch( (error: Response) => Observable.throw(error.json() ));

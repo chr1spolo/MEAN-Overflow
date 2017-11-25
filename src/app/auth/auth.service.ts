@@ -21,6 +21,25 @@ export class AuthService {
         }
     }
 
+    userSignUp(user: User) {
+        const body = JSON.stringify(user);
+        const headers = new Headers(
+          { 'Content-Type': 'application/json' }
+        );
+        return this.http.post(
+            urljoin(this.usersUrl, 'signup'),
+            body,
+            {headers}
+        ).map( (response: Response) => {
+              const json = response.json();
+              this.userLogIn(json);
+              return json;
+        }).catch( (error: Response) => {
+            console.log(error);
+            return Observable.throw(error.json());
+        } );
+    }
+
     userSignIn(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers(
@@ -34,7 +53,7 @@ export class AuthService {
               const json = response.json();
               this.userLogIn(json);
               return json;
-         })._catch( (error: Response) => {
+         }).catch( (error: Response) => {
             console.log(error);
             return Observable.throw(error.json());
          } );
@@ -55,6 +74,12 @@ export class AuthService {
     }
 
     userIsLoggedIn() {
-        return localStorage.getItem('token') !== null;
+        return localStorage.getItem('_token') !== null;
+    }
+
+    userLogOut() {
+      localStorage.clear();
+      this.currentUser = null;
+      this.router.navigateByUrl('/');
     }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../user.model';
+import { AuthService } from '../auth.service';
 
 @Component({
     selector: 'app-singup-screen',
@@ -11,23 +12,30 @@ export class SignUpScreenComponent implements OnInit {
 
     signinForm: FormGroup;
 
-        ngOnInit() {
-            this.signinForm = new FormGroup({
-                firstname: new FormControl(null, Validators.required),
-                lastname: new FormControl(null, Validators.required),
-                email: new FormControl(null, [
-                    Validators.required,
-                    Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-                ]),
-                password: new FormControl(null, Validators.required)
-            });
-        }
+    constructor(private authService: AuthService) {}
 
-        onSubmit(){
-            if (this.signinForm.valid) {
-                const { firstname, lastname,email, password } = this.signinForm.value;
-                const user = new User(email, password, firstname, lastname);
-                console.log(user);
-            }
+    ngOnInit() {
+        this.signinForm = new FormGroup({
+            firstname: new FormControl(null, Validators.required),
+            lastname: new FormControl(null, Validators.required),
+            email: new FormControl(null, [
+                Validators.required,
+                Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+            ]),
+            password: new FormControl(null, Validators.required)
+        });
+    }
+
+    onSubmit() {
+        if (this.signinForm.valid) {
+            const { firstname, lastname,email, password } = this.signinForm.value;
+            const user = new User(email, password, firstname, lastname);
+            console.log(user);
+            this.authService.userSignUp(user)
+                            .subscribe(
+                                this.authService.userLogIn,
+                                err => console.log(err)
+                            );
         }
+    }
 }

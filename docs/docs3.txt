@@ -1,0 +1,7 @@
+el modulo para tener conexion con la base de datos será Mongoose.
+
+para validar campos unicos en moongose utilizá mongoose-unique-validator
+
+async await: babel-preset-stage-0 global
+
+bcryptjs encriptacion
