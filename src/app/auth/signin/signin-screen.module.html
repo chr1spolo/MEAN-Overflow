@@ -1,28 +1,29 @@
 <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="animated bounceInUp">
     <h3 mat-subheader> Inicia sesión </h3>
     <mat-form-field>
-        <input 
-        matInput 
-        placeholder="Correo electrónico:" formControlName="email" 
+        <input
+        matInput
+        placeholder="Correo electrónico:" formControlName="email"
         id="email">
+        <mat-error *ngIf="!emailForm.hasError"> Email incorrecto </mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input 
+        <input
         matInput
         type="password"
-        placeholder="Correo contraseña:" formControlName="password" 
+        placeholder="Correo contraseña:" formControlName="password"
         id="password">
     </mat-form-field>
-    <button 
-    type="submit" 
-    mat-raised-button 
-    color="accent">   
+    <button
+    type="submit"
+    mat-raised-button
+    color="accent">
         Iniciar
     </button>
     <p class="signup">
         ¿Eres nuevo?
         <a mat-button color="primary" [routerLink]="['/signUp']">
-            Registrate aquí
+            Registrate aquí {{ emailForm.status }}
         </a>
     </p>
 </form>

@@ -3,7 +3,8 @@ import { secretKey } from '../config'
 import jwt from 'jsonwebtoken'
 import { User } from '../models/index'
 import {
-  hashSync as hash
+  hashSync as hash,
+  compareSync as compairPassword
 } from 'bcryptjs'
 
 const debug = new Debug('platzi-overflow:auth')
@@ -84,7 +85,3 @@ function handleLoginFailed(res, message) {
   })
 }
 
-
-const compairPassword = (providerPassword, userPassword) => {
-  return providerPassword === userPassword
-}
