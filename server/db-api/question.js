@@ -4,9 +4,9 @@ import { Question, Answer } from '../models/index'
 const debug = new Debug('Mean-overflow:db-api:questions')
 
 export default {
-    findAll: () => {
+    findAll: (sort = '-createdAt') => {
         debug('Finding all questions')
-        return Question.find().populate('answers')
+        return Question.find().populate('answers').sort(sort)
     },
 
     findById: (_id) => {

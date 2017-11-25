@@ -23,8 +23,8 @@ export class QuestionService {
       return url + `?_token=${_token}`;
   }
 
-  getQuestions(): Promise<void | Question[]> {
-      return this.http.get(this.questionsUrl)
+  getQuestions(sort = '-createdAt'): Promise<void | Question[]> {
+      return this.http.get(`${this.questionsUrl}?sort=${sort}`)
                   .toPromise()
                   .then(response => response.json() as Question[])
                   .catch(this.handlerError);

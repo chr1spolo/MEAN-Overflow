@@ -2,8 +2,7 @@
 
 <div *ngIf="!loading">
 
-  <mat-list class="animated bounceInUp">
-      <h3 mat-subheader> Preguntas </h3>
+  <mat-list class="animated fadeInUp">
       <mat-list-item *ngFor="let question of questions" [routerLink]="['/questions', question._id]" class="pointer">
           <i *ngIf="question.icon === 'none'" mat-list-icon class="resize material-icons help">help</i>
           <i *ngIf="question.icon !== 'none'" mat-list-icon class="resize {{ question.icon }} colored"></i>
@@ -13,9 +12,5 @@
           </p>
       </mat-list-item>
   </mat-list>
-  <button class="add-question" mat-fab color="primary" [routerLink]="['questions/new']" *ngIf="addQuestion">
-    <mat-icon>add</mat-icon>
-  </button>
-
 
 </div>

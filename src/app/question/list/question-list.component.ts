@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Question } from '../question.model';
 import { QuestionService } from '../question.service';
 import { AuthService } from '../../auth/auth.service';
@@ -25,6 +25,7 @@ export class QuestionListComponent implements OnInit {
     main[0].classList.remove('animated');
   }
 
+    @Input() sort = '-createdAt';
     questions: Question[];
     loading = true;
     addQuestion = true;
@@ -34,7 +35,7 @@ export class QuestionListComponent implements OnInit {
         this.addQuestion = false;
       }
       this.questionsService
-        .getQuestions()
+        .getQuestions(this.sort)
         .then((questions: Question[]) => {
           this.questions = questions;
           this.loading = false;

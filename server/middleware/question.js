@@ -3,7 +3,8 @@ import { User } from '../models/index'
 
 export const questionsMiddleware = async (req, res, next) => {
   try {
-    req.questions = await question.findAll()
+    const { sort } = req.query
+    req.questions = await question.findAll(sort)
     next()
   } catch (error) {
     res.status(500).json({
