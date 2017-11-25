@@ -9,7 +9,7 @@ const QuestionSchema = new Schema({
   createdAt: { type: Date, required: true, default: Date.now },
   icon: { type: String, required: true },
   user: { type: ObjectId, ref: 'User', required: true },
-  answers: [ { type: ObjectId, ref: 'Answer' } ]
+  answers: [ { type: ObjectId, ref: 'Answer', default: [] } ]
 })
 
 export default mongoose.model('Question', QuestionSchema)

@@ -4,7 +4,9 @@ import { userInfo } from 'os';
 import {
     required,
     questionMiddleware,
-    questionsMiddleware
+    questionsMiddleware,
+    questionAdd,
+    questionAddAnswer
 } from '../middleware'
 
 const app = express.Router()
@@ -15,28 +17,11 @@ app.get('/', questionsMiddleware, (req, res) => {
   }, 2000)
 })
 app.get('/:id', questionMiddleware, (req, res) => {
-  setTimeout( () => {
-      res.status(200).json(req.question)
-  }, 2000)
+  res.status(201).json(res.question)
 })
 
-app.post('/', required, questionsMiddleware, (req, res) => {
-    const question = req.body
-    question._id = +new Date()
-    question.user = req.user
-    question.createdAt = new Date()
-    question.answers = []
-    req.questions.push(question)
-    res.status(201).json(question)
-})
+app.post('/', required, questionsMiddleware, questionAdd)
 
-app.post('/:id/answers', required, questionMiddleware, (req, res) => {
-    const answer = req.body
-    const q = req.question
-    answer.createdAt = new Date()
-    answer.user = req.user
-    q.answers.push(answer)
-    res.status(201).json(answer)
-})
+app.post('/:id/answers', required, questionMiddleware, questionAddAnswer)
 
 export default app

@@ -12,7 +12,7 @@ const debug = new Debug('platzi-overflow:auth')
 /* export const findUserByEmail = e =>  users.find( ({email}) => email === e ) */
 
 export const required = (req, res, next) => {
-    jwd.verify(req.query._token, secretKey, (err, _token) => {
+    jwt.verify(req.query._token, secretKey, (err, _token) => {
         if (err) {
           Debug('JWTF was not encrypted with our secretKey');
           return res.status(401).json({
