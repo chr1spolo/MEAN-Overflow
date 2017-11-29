@@ -11,6 +11,9 @@
               <small> {{ question.answers.length }} respuestas - {{ question.createdAt | amLocale: 'es' | amTimeAgo }} </small>
           </p>
       </mat-list-item>
+    <mat-list-item *ngIf="questions.length == 0">
+      Ninguna pregunta, sé el primero en preguntar.
+    </mat-list-item>
   </mat-list>
 
 </div>

@@ -3,12 +3,6 @@ import { Question } from '../question.model';
 import { QuestionService } from '../question.service';
 import { AuthService } from '../../auth/auth.service';
 
-const q = new Question(
-    '¿Como reutilizo un componente en android?',
-    'Miren, esta es mi pregunta...',
-    new Date(),
-    'none'
-);
 
 @Component({
     selector: 'app-question-list',
@@ -28,12 +22,8 @@ export class QuestionListComponent implements OnInit {
     @Input() sort = '-createdAt';
     questions: Question[];
     loading = true;
-    addQuestion = true;
 
     ngOnInit() {
-      if ( !this.authService.userIsLoggedIn() ) {
-        this.addQuestion = false;
-      }
       this.questionsService
         .getQuestions(this.sort)
         .then((questions: Question[]) => {
